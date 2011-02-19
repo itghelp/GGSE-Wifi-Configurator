@@ -1,31 +1,14 @@
 #! /bin/bash
 KEYCHAIN=/Users/`whoami`/Library/Keychains/login.keychain
-whoami
-echo keychain=$KEYCHAIN
-# Kill System Preferences dialogueueueu as well as Keychain Access
-
-killall System\ Preferences
-killall Keychain\ Access
+PAYLOADDIR=/tmp/ggsewifipayload
 
 # Turn off Airport
-
 networksetup -setairportpower en1 off
 
 # Delete the wireless cert.
-
 security delete-cert -c wireless.education.ucsb.edu 2>/dev/null
 
 # Delete all GGSE related wifi profiles
-
-
-#for i in $(`networksetup -listalluserprofiles`); do
-#	i="\"$i\""
-#	echo $i | grep -i 'ggse'
-#	if [ $? == 0 ]; then
-#		 echo networksetup -deleteuserprofile "$i"
-#	fi 
-#done
-
 networksetup -listalluserprofiles | while read i; do
 	i="\"$i\""
 	echo $i | grep -i 'ggse'
@@ -34,22 +17,15 @@ networksetup -listalluserprofiles | while read i; do
 	fi
 done
 
-
-
-
-
-
 # Re-import the certificate with the correct trust settings
-
-security add-trusted-cert -k $KEYCHAIN -r trustAsRoot -p eap /tmp/ggse-payload/wireless.education.ucsb.edu.cer
+security add-trusted-cert -k $KEYCHAIN -r trustAsRoot -p eap $PAYLOADDIR/wireless.education.ucsb.edu.cer
 
 # Re-import profile
 
-networksetup -import8021xProfiles AirPort /tmp/ggse-payload/ggse_bare_profile.networkConnect
+networksetup -import8021xProfiles AirPort $PAYLOADDIR/ggse_bare_profile.networkConnect
 
 # Cleanup tmp files
-#rm -rf /tmp/ggse-payload
+#rm -rf $PAYLOADDIR
 
 # Turn on Airport
-
 networksetup -setairportpower en1 on
