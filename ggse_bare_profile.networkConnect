@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>8021X</key>
+	<dict>
+		<key>UserProfiles</key>
+		<array>
+			<dict>
+				<key>EAPClientConfiguration</key>
+				<dict>
+					<key>AcceptEAPTypes</key>
+					<array>
+						<integer>21</integer>
+					</array>
+					<key>OuterIdentity</key>
+					<string></string>
+					<key>TTLSInnerAuthentication</key>
+					<string>PAP</string>
+				</dict>
+				<key>UniqueIdentifier</key>
+				<string>73134892-F027-42BA-804E-17322B51F24F</string>
+				<key>UserDefinedName</key>
+				<string>GGSE Public</string>
+				<key>Wireless Network</key>
+				<string>GGSE Public</string>
+				<key>Wireless Security</key>
+				<string>WPA2 Enterprise</string>
+			</dict>
+		</array>
+	</dict>
+</dict>
+</plist>
