@@ -13,10 +13,18 @@
 					<array>
 						<integer>21</integer>
 					</array>
+					<key>ExportedPassword</key>
+					<data>
+					G+cEQuHItaTgmB8a
+					</data>
 					<key>OuterIdentity</key>
 					<string></string>
 					<key>TTLSInnerAuthentication</key>
 					<string>PAP</string>
+					<key>UserName</key>
+					<string>help</string>
+					<key>UserPasswordKeychainItemID</key>
+					<string>ggse-wifi-password</string>
 				</dict>
 				<key>UniqueIdentifier</key>
 				<string>73134892-F027-42BA-804E-17322B51F24F</string>

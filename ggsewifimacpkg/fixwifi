@@ -1,6 +1,13 @@
 #! /bin/bash
+
 KEYCHAIN=/Users/`whoami`/Library/Keychains/login.keychain
 PAYLOADDIR=/tmp/ggsewifipayload
+
+# Prompt for username and password
+echo Enter wifi username
+read USERNAME
+echo Enter wifi password
+read -s PASSWORD
 
 # Turn off Airport
 networksetup -setairportpower en1 off
@@ -20,12 +27,12 @@ done
 # Re-import the certificate with the correct trust settings
 security add-trusted-cert -k $KEYCHAIN -r trustAsRoot -p eap $PAYLOADDIR/wireless.education.ucsb.edu.cer
 
+# Add the password
+security add-generic-password -a "$USERNAME" -s "ggse-wifi-password"  -D "802.1X Password" -l "GGSE Public" -w "$PASSWORD" -A -U
+
 # Re-import profile
-
 networksetup -import8021xProfiles AirPort $PAYLOADDIR/ggse_bare_profile.networkConnect
-
-# Cleanup tmp files
-#rm -rf $PAYLOADDIR
 
 # Turn on Airport
 networksetup -setairportpower en1 on
+
